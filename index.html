@@ -1,0 +1,355 @@
+<body>
+<div class="clock" role="img">
+	<div class="clock__time">
+		<div class="clock__digits">
+			<div class="clock__digit" data-digit="0"></div>
+			<div class="clock__digit" data-digit="1"></div>
+			<div class="clock__slash"></div>
+			<div class="clock__digit" data-digit="0"></div>
+			<div class="clock__digit" data-digit="1"></div>
+			<div class="clock__slash"></div>
+			<div class="clock__digit" data-digit="1"></div>
+			<div class="clock__digit" data-digit="9"></div>
+			<div class="clock__digit" data-digit="0"></div>
+			<div class="clock__digit" data-digit="0"></div>
+			<div class="clock__space"></div>
+			<div class="clock__digit" data-digit="1"></div>
+			<div class="clock__digit" data-digit="2"></div>
+			<div class="clock__colon"></div>
+			<div class="clock__digit" data-digit="0"></div>
+			<div class="clock__digit" data-digit="0"></div>
+			<div class="clock__colon"></div>
+			<div class="clock__digit" data-digit="0"></div>
+			<div class="clock__digit" data-digit="0"></div>
+			<div class="clock__digit" data-digit="A"></div>
+			<div class="clock__digit" data-digit="M"></div>
+		</div>
+	</div>
+</div>
+
+<style>
+* {
+	border: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+:root {
+	--hue: 223;
+	--bg: hsl(var(--hue),10%,70%);
+	--fg: hsl(var(--hue),10%,10%);
+	--primary: hsl(var(--hue),90%,50%);
+	--trans-dur: 0.3s;
+	font-size: calc(16px + (48 - 16) * (100vw - 320px) / (2560 - 320));
+}
+body {
+	
+	color: var(--fg);
+	display: flex;
+	font: 1em/1.5 sans-serif;
+	height: 100vh;
+	transition:
+		background-color var(--trans-dur),
+		color var(--trans-dur);
+}
+.clock {
+
+	border-radius: 0.25em;
+	box-shadow:
+		0 0 0 0.125em hsla(var(--hue),10%,10%,0.3) inset,
+		0 0.25em 0.5em hsla(var(--hue),10%,10%,0.7);
+	font-size: 0.6em;
+	margin: auto;
+	width: 25em;
+	height: 6.5em;
+
+}
+.clock__colon,
+.clock__slash,
+.clock__space {
+	margin: 0 0.25em;
+	width: 1em;
+	height: 3.5em;
+}
+.clock__colon:before,
+.clock__digit:before,
+.clock__slash:before {
+	border-radius: 50%;
+	color: blcak;
+	content: "";
+	display: block;
+	margin: 0.0625em;
+	width: 0.375em;
+	height: 0.375em;
+}
+.clock__colon:before {
+	box-shadow:
+		0 0.5em 0, 0.5em 0.5em 0,
+		0 1em 0, 0.5em 1em 0,
+		0 2em 0, 0.5em 2em 0,
+		0 2.5em 0, 0.5em 2.5em 0;
+}
+.clock__digits {
+	animation: digitsMarquee 10s steps(165) infinite;
+	display: flex;
+}
+.clock__digit,
+.clock__slash {
+	margin: 0 0.25em;
+	width: 2.5em;
+	height: 3.5em;
+}
+[data-digit=" "] {
+	display: none;
+}
+[data-digit="0"]:before {
+	box-shadow:
+		0.5em 0 0, 1em 0 0, 1.5em 0 0,
+		0 0.5em 0, 2em 0.5em 0,
+		0 1em 0, 1.5em 1em 0, 2em 1em 0,
+		0 1.5em 0, 1em 1.5em 0, 2em 1.5em 0,
+		0 2em 0, 0.5em 2em 0, 2em 2em 0,
+		0 2.5em 0, 2em 2.5em 0,
+		0.5em 3em 0, 1em 3em 0, 1.5em 3em 0;
+}
+[data-digit="1"]:before {
+	box-shadow:
+		1em 0 0,
+		0.5em 0.5em 0, 1em 0.5em 0,
+		0 1em 0, 1em 1em 0,
+		1em 1.5em 0,
+		1em 2em 0,
+		1em 2.5em 0,
+		0 3em 0, 0.5em 3em 0, 1em 3em 0, 1.5em 3em 0, 2em 3em 0;
+}
+[data-digit="2"]:before {
+	background-color: currentColor;
+	box-shadow:
+		0.5em 0 0, 1em 0 0, 1.5em 0 0,
+		2em 0.5em 0,
+		2em 1em 0,
+		0.5em 1.5em 0, 1em 1.5em 0, 1.5em 1.5em 0,
+		0 2em 0,
+		0 2.5em 0,
+		0 3em 0, 0.5em 3em 0, 1em 3em 0, 1.5em 3em 0, 2em 3em 0;
+}
+[data-digit="3"]:before {
+	background-color: currentColor;
+	box-shadow:
+		0.5em 0 0, 1em 0 0, 1.5em 0 0,
+		2em 0.5em 0,
+		2em 1em 0,
+		0.5em 1.5em 0, 1em 1.5em 0, 1.5em 1.5em 0,
+		2em 2em 0,
+		2em 2.5em 0,
+		0 3em 0, 0.5em 3em 0, 1em 3em 0, 1.5em 3em 0;
+}
+[data-digit="4"]:before {
+	box-shadow:
+		2em 0 0,
+		1.5em 0.5em 0, 2em 0.5em 0,
+		1em 1em 0, 2em 1em 0,
+		0.5em 1.5em 0, 2em 1.5em 0,
+		0 2em 0, 0.5em 2em 0, 1em 2em 0, 1.5em 2em 0, 2em 2em 0,
+		2em 2.5em 0,
+		2em 3em 0;
+}
+[data-digit="5"]:before {
+	background-color: currentColor;
+	box-shadow:
+		0.5em 0 0, 1em 0 0, 1.5em 0 0, 2em 0 0,
+		0 0.5em 0,
+		0 1em 0,
+		0 1.5em 0, 0.5em 1.5em 0, 1em 1.5em 0, 1.5em 1.5em 0,
+		2em 2em 0,
+		2em 2.5em 0,
+		0 3em 0, 0.5em 3em 0, 1em 3em 0, 1.5em 3em 0;
+}
+[data-digit="6"]:before {
+	box-shadow:
+		0.5em 0 0, 1em 0 0, 1.5em 0 0,
+		0 0.5em 0,
+		0 1em 0,
+		0 1.5em 0, 0.5em 1.5em 0, 1em 1.5em 0, 1.5em 1.5em 0,
+		0 2em 0, 2em 2em 0,
+		0 2.5em 0, 2em 2.5em 0,
+		0.5em 3em 0, 1em 3em 0, 1.5em 3em 0;
+}
+[data-digit="7"]:before {
+	background-color: currentColor;
+	box-shadow:
+		0.5em 0 0, 1em 0 0, 1.5em 0 0, 2em 0 0,
+		2em 0.5em 0,
+		2em 1em 0,
+		1.5em 1.5em 0,
+		1em 2em 0,
+		1em 2.5em 0,
+		1em 3em 0;
+}
+[data-digit="8"]:before {
+	box-shadow:
+		0.5em 0 0, 1em 0 0, 1.5em 0 0,
+		0 0.5em 0, 2em 0.5em 0,
+		0 1em 0, 2em 1em 0,
+		0.5em 1.5em 0, 1em 1.5em 0, 1.5em 1.5em 0,
+		0 2em 0, 2em 2em 0,
+		0 2.5em 0, 2em 2.5em 0,
+		0.5em 3em 0, 1em 3em 0, 1.5em 3em 0;
+}
+[data-digit="9"]:before {
+	box-shadow:
+		0.5em 0 0, 1em 0 0, 1.5em 0 0,
+		0 0.5em 0, 2em 0.5em 0,
+		0 1em 0, 2em 1em 0,
+		0.5em 1.5em 0, 1em 1.5em 0, 1.5em 1.5em 0, 2em 1.5em 0,
+		2em 2em 0,
+		2em 2.5em 0,
+		0.5em 3em 0, 1em 3em 0, 1.5em 3em 0;
+}
+[data-digit="A"]:before {
+	box-shadow:
+		0.5em 0 0, 1em 0 0, 1.5em 0 0,
+		0 0.5em 0, 2em 0.5em 0,
+		0 1em 0, 2em 1em 0,
+		0 1.5em 0, 0.5em 1.5em 0, 1em 1.5em 0, 1.5em 1.5em 0, 2em 1.5em 0,
+		0 2em 0, 2em 2em 0,
+		0 2.5em 0, 2em 2.5em 0,
+		0 3em 0, 2em 3em 0;
+}
+[data-digit="P"]:before {
+	background-color: currentColor;
+	box-shadow:
+		0.5em 0 0, 1em 0 0, 1.5em 0 0,
+		0 0.5em 0, 2em 0.5em 0,
+		0 1em 0, 2em 1em 0,
+		0 1.5em 0, 0.5em 1.5em 0, 1em 1.5em 0, 1.5em 1.5em 0,
+		0 2em 0,
+		0 2.5em 0,
+		0 3em 0;
+}
+[data-digit="M"]:before {
+	background-color: currentColor;
+	box-shadow:
+		2em 0 0,
+		0 0.5em 0, 0.5em 0.5em 0, 1.5em 0.5em 0, 2em 0.5em 0,
+		0 1em 0, 1em 1em 0, 2em 1em 0,
+		0 1.5em 0, 1em 1.5em 0, 2em 1.5em 0,
+		0 2em 0, 2em 2em 0,
+		0 2.5em 0, 2em 2.5em 0,
+		0 3em 0, 2em 3em 0;
+}
+.clock__slash:before {
+	box-shadow:
+		2em 0 0,
+		1.5em 0.5em 0,
+		1.5em 1em 0,
+		1em 1.5em 0,
+		0.5em 2em 0,
+		0.5em 2.5em 0,
+		0 3em 0;
+}
+.clock__time {
+	background-color: white;
+	display: flex;
+	align-items: center;
+	margin: 0.75em 0.5em;
+	overflow: hidden;
+	width: calc(100% - 1em);
+	height: calc(100% - 1.5em);
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: hsl(var(--hue),10%,30%);
+		--fg: hsl(var(--hue),10%,90%);
+	}
+	.clock {
+		background-color: hsl(var(--hue),10%,40%);
+	}
+}
+
+/* Animations */
+@keyframes digitsMarquee {
+	from { transform: translateX(24em); }
+	to { transform: translateX(-58.5em); }
+}
+</style>
+<script>
+window.addEventListener("DOMContentLoaded",() => {
+	const c = new Clock18(".clock");
+});
+
+class Clock18 {
+	constructor(el) {
+		this.el = document.querySelector(el);
+
+		this.init();
+	}
+	init() {
+		this.timeUpdate();
+	}
+	get datetimeAsObject() {
+		const date = new Date();
+		const Y = date.getFullYear();
+		const M = date.getMonth() + 1;
+		const D = date.getDate();
+		const h = date.getHours();
+		const m = date.getMinutes();
+		const s = date.getSeconds();
+
+		return {Y,M,D,h,m,s};
+	}
+	get datetimeAsString() {
+		const [Mt,Mo,Dt,Do,Yth,Yh,Yt,Yo,ht,ho,mt,mo,st,so,ap,m] = this.datetimeDigits;
+		const date = `${Mt}${Mo}/${Dt}${Do}/${Yth}${Yh}${Yt}${Yo}`;
+		const time = `${ht}${ho}:${mt}${mo}:${st}${so} ${ap}${m}`;
+
+		return `${date} ${time}`.trim();
+	}
+	get datetimeDigits() {
+		let {Y,M,D,h,m,s} = this.datetimeAsObject;
+		// year
+		const YYYY = `${Y}`.split("");
+		// month
+		let MM = `${M}`.split("");
+		if (M < 10) MM.unshift(" ");
+		// day
+		let DD = `${D}`.split("");
+		if (D < 10) DD.unshift(" ");
+		// meridiem
+		const ap = h > 11 ? "P" : "A";
+		if (h > 12) h -= 12;
+		if (h === 0) h = 12;
+		// hour
+		let hh = `${h}`.split("");
+		if (h < 10) hh.unshift(" ");
+		// minute
+		let mm = `${m}`.split("");
+		if (m < 10) mm.unshift("0");
+		// second
+		let ss = `${s}`.split("");
+		if (s < 10) ss.unshift("0");
+
+		return [...MM,...DD,...YYYY,...hh,...mm,...ss,ap,"M"];
+	}
+	timeUpdate() {
+		// update the `title`
+		this.el?.setAttribute("title", this.datetimeAsString);
+		// update the digits
+		this.datetimeDigits.forEach((digit,i) => {
+			const digitEl = this.el.querySelectorAll("[data-digit]")[i];
+			if (!digitEl) return;
+
+			digitEl.setAttribute("data-digit",digit);
+		});
+		// loop
+		clearTimeout(this.timeUpdateLoop);
+		this.timeUpdateLoop = setTimeout(this.timeUpdate.bind(this),1e3);
+	}
+}
+</script>
+
+
+
+</body>
